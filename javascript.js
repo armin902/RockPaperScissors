@@ -1,5 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
 
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3) + 1;
@@ -18,29 +16,43 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-function playRound(humanChoice, computerChoice) {
+
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(humanChoice, computerChoice) {
     let convertedHumanChoice = humanChoice.toLowerCase();
 
     if ((humanChoice == "rock" && computerChoice == "rock") || 
         (humanChoice == "paper" && computerChoice == "paper") || 
         (humanChoice == "scissors" && computerChoice == "scissors")) {
-            return "Tie! You chose " + humanChoice + " and the computer chose " + computerChoice + ". ";
+            console.log("Tie! You chose " + humanChoice + " and the computer chose " + computerChoice + ". ");
         } else if ((humanChoice == "rock" && computerChoice == "paper") ||
         (humanChoice == "paper" && computerChoice == "scissors") ||
         (humanChoice == "scissors" && computerChoice == "rock")) {
+            console.log("You lose! " + computerChoice + " beats " + humanChoice + ".");
             computerScore++;
-            return "You lose! " + computerChoice + " beats " + humanChoice + ".";
         } else {
+            console.log("You win! " + humanChoice + " beats " + computerChoice + "."); 
             humanScore++;
-            return "You win! " + humanChoice + " beats " + computerChoice + "."; 
         }
+        }
+    
+    for(let i = 0; i < 5; i++) {
+        const humanSelect = getHumanChoice();
+        const computerSelect = getComputerChoice();
+        playRound(humanSelect, computerSelect);
+    }
+
+    if(humanScore === computerScore) {
+        console.log("Tie! You: " + humanScore + " | Computer: " + computerScore);
+    } else if (humanScore > computerScore) {
+        console.log("You win! You: " + humanScore + " | Computer: " + computerScore);
+    } else {
+        console.log("You lose. You: " + humanScore + " | Computer: " + computerScore);
+    }
 }
 
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-
-console.log(playRound(humanSelection, computerSelection));
-
-
-function playRound
+playGame();
