@@ -39,20 +39,44 @@ function playGame() {
         }
         }
     
-    for(let i = 0; i < 5; i++) {
-        const humanSelect = getHumanChoice();
-        const computerSelect = getComputerChoice();
-        playRound(humanSelect, computerSelect);
-    }
 
     if(humanScore === computerScore) {
         console.log("Tie! You: " + humanScore + " | Computer: " + computerScore);
     } else if (humanScore > computerScore) {
         console.log("You win! You: " + humanScore + " | Computer: " + computerScore);
     } else {
-        console.log("You lose. You: " + humanScore + " | Computer: " + computerScore);
+        console.log("You lose. You: " + humanScore + " | Computer: " + computerScore);s
     }
 }
 
 
 playGame();
+
+const btnContainer = document.createElement("div");
+const rockBtn = document.createElement("button");
+const paperBtn = document.createElement("button");
+const scissorsBtn = document.createElement("button");
+
+
+btnContainer.classList.add("buttonsContainer");
+rockBtn.classList.add("buttons");
+paperBtn.classList.add("buttons");
+scissorsBtn.classList.add("buttons");
+
+btnContainer.appendChild(rockBtn);
+btnContainer.appendChild(paperBtn);
+btnContainer.appendChild(scissorsBtn);
+
+document.appendChild(btnContainer);
+
+rockBtn.addEventListener("click", (event) => { 
+    playRound();
+});
+
+paperBtn.addEventListener("click", (event) => { 
+    playRound();
+});
+
+scissorsBtn.addEventListener("click", (event) => { 
+    playRound();
+});
